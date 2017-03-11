@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Graphs">
+
+        <attr name="grapsType" format="string"/>
+        <attr name="yName" format="string"/>
+        <attr name="xName" format="string"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.yanyuqi.ctmeter.fragment.LCQXFragment">
+
+    <com.yanyuqi.ctmeter.widget.Graphs
+        android:id="@+id/lcqx_graphs"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:grapsType="等分坐标励磁曲线"
+        app:xName="I(A)"
+        app:yName="U(V)"
+        android:layout_weight="5"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</LinearLayout>
