@@ -96,7 +96,7 @@ public class ResultFragment extends Fragment implements ChangeRightBtn {
     }
 
     private void initData() {
-        int pos = 0;
+        int pos;
         for (int i = 0; i < str.length; i++) {
             pos = temp.indexOf("_");
             if (pos == -1) {

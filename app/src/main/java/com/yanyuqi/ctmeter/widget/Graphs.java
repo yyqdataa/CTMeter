@@ -19,6 +19,7 @@ import android.view.View;
 import com.yanyuqi.ctmeter.R;
 import com.yanyuqi.ctmeter.bean.LCQXBean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +37,17 @@ public class Graphs extends View {
     private List<Point> points;
     private float xTotalLength;
     private float yTotalLength;
+    private int xPaddingLeft = 35;
+    private int yPaddingBottom = 25;
     private boolean hasGDPoint;
     private Point gdPoint;
     private String grapsType = "";
     private String xName = "";
     private String yName = "";
+    private int xCounts = 14;
+    private int yCounts = 8;
+    private float xMaxValue;
+    private float yMaxValue;
 
 
     public Graphs(Context context) {
@@ -131,7 +138,7 @@ public class Graphs extends View {
      * @return
      */
     private float x2XValue(float x) {
-        return x * (mWidth - dp2px(25)) / 6;
+        return x * (mWidth - dp2px(xPaddingLeft)) / getMaxKeDu(xMaxValue);
     }
 
     /**
@@ -141,7 +148,25 @@ public class Graphs extends View {
      * @return
      */
     private float y2YValue(float y) {
-        return y * (mHeight - dp2px(25)) / 160;
+        return y * (mHeight - dp2px(yPaddingBottom)) / getMaxKeDu(yMaxValue);
+    }
+
+    /**
+     * 获得最大坐标刻度
+     *
+     * @param yMaxValue
+     * @return
+     */
+    private float getMaxKeDu(float yMaxValue) {
+        int value = (int) yMaxValue;
+        String v = String.valueOf(value);
+        int len = v.length();
+        int level = (int) Math.pow(10, len - 1);
+        int i = 0;
+        while (i * level < yMaxValue) {
+            i++;
+        }
+        return i * level;
     }
 
     private List<Point> createPoints(List resultData) {
@@ -150,6 +175,12 @@ public class Graphs extends View {
             LCQXBean lcqxBean = (LCQXBean) o;
             float x = lcqxBean.getE_fi();
             float y = lcqxBean.getE_fu();
+            if (x > xMaxValue) {
+                xMaxValue = x;
+            }
+            if (y > yMaxValue) {
+                yMaxValue = y;
+            }
             Point p = new Point(x, y);
             points.add(p);
         }
@@ -160,13 +191,13 @@ public class Graphs extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         mWidth = w;
         mHeight = h;
-        xTotalLength = mWidth - dp2px(35);
-        yTotalLength = mHeight - dp2px(25);
+        xTotalLength = mWidth - dp2px(xPaddingLeft);
+        yTotalLength = mHeight - dp2px(yPaddingBottom);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.translate(0 + dp2px(30), yTotalLength);
+        canvas.translate(0 + dp2px(xPaddingLeft), yTotalLength);
         canvas.drawColor(Color.parseColor("#ffffff"));
         drawTitle(grapsType, canvas);
         drawCoorSystem(canvas);
@@ -283,21 +314,24 @@ public class Graphs extends View {
      * @param canvas
      */
     private void drawYKeDu(Canvas canvas) {
-        int count = 8;
         float totalLen = yTotalLength;
-        float dis = totalLen / count;
+        float dis = totalLen / yCounts;
+        float singleValue = getMaxKeDu(yMaxValue) / yCounts;//获取单个刻度的大小
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#000000"));
         paint.setStrokeWidth(2);
         paint.setTextSize(dp2px(12));
         paint.setAntiAlias(true);
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < yCounts; i++) {
             if (i % 2 == 1) {
                 canvas.drawLine(0, 0 - i * dis, -dp2px(2), 0 - i * dis, paint);
                 drawDashLine(canvas, 0, -i * dis, xTotalLength, -i * dis);
             } else {
                 canvas.drawLine(0, 0 - i * dis, -dp2px(5), 0 - i * dis, paint);
-                drawYKDValue(paint, i * 20 + "", canvas, -i * dis);
+                int f = (int) (i * singleValue);
+//                BigDecimal b   =   new   BigDecimal(f);
+//                float   f1   =   b.setScale(1,   BigDecimal.ROUND_HALF_UP).floatValue();
+                drawYKDValue(paint, f + "", canvas, -i * dis);
             }
         }
     }
@@ -308,21 +342,24 @@ public class Graphs extends View {
      * @param canvas
      */
     private void drawXKeDu(Canvas canvas) {
-        int count = 14;
         float totalLen = xTotalLength;
-        float dis = totalLen / count;
+        float dis = totalLen / xCounts;
+        float singleValue = getMaxKeDu(xMaxValue) / xCounts;//获取单个刻度的大小
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#000000"));
         paint.setStrokeWidth(2);
         paint.setTextSize(dp2px(12));
         paint.setAntiAlias(true);
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < xCounts; i++) {
             if (i % 2 == 1) {
                 canvas.drawLine(0 + i * dis, 0, 0 + i * dis, dp2px(2), paint);
                 drawDashLine(canvas, i * dis, 0, i * dis, -yTotalLength);
             } else {
                 canvas.drawLine(0 + i * dis, 0, 0 + i * dis, dp2px(5), paint);
-                drawXKDValue(paint, i * 0.5 + "", canvas, i * dis);
+                float f = i * singleValue;
+                BigDecimal b = new BigDecimal(f);
+                float f1 = b.setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+                drawXKDValue(paint, f1 + "", canvas, i * dis);
             }
         }
     }
@@ -383,6 +420,13 @@ public class Graphs extends View {
         canvas.drawText(text, xValue - w / 2, dp2px(7) + h, paint);
     }
 
+    /**
+     * 绘制X轴单位
+     *
+     * @param paint
+     * @param text
+     * @param canvas
+     */
     private void drawXText(Paint paint, String text, Canvas canvas) {
         if (text == null) {
             text = "";
@@ -391,9 +435,16 @@ public class Graphs extends View {
         paint.getTextBounds(text, 0, text.length(), rectF);
         int w = rectF.width();
         int h = rectF.height();
-        canvas.drawText(text, xTotalLength - w, h, paint);
+        canvas.drawText(text, xTotalLength - w - dp2px(2), h + dp2px(2), paint);
     }
 
+    /**
+     * 绘制Y轴单位
+     *
+     * @param paint
+     * @param text
+     * @param canvas
+     */
     private void drawYText(Paint paint, String text, Canvas canvas) {
         if (text == null) {
             text = "";

@@ -172,6 +172,13 @@ public class DLHGQFragment extends Fragment {
                 currentJBNum++;
                 int i = currentJBNum % 8;
                 jbButton.setText(JB_NAME[i]);
+                if (i==1||i==2){
+                    resultFragment.changeRightbtn(SIX_BTN);
+                    currentBtnNum = SIX_BTN;
+                }else {
+                    resultFragment.changeRightbtn(FOUR_BTN);
+                    currentBtnNum = FOUR_BTN;
+                }
                 setClassView(i);
             }
         });
