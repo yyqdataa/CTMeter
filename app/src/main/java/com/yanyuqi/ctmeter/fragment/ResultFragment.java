@@ -95,6 +95,7 @@ public class ResultFragment extends Fragment implements ChangeRightBtn {
         return view;
     }
 
+    //初始化数据
     private void initData() {
         int pos;
         for (int i = 0; i < str.length; i++) {
