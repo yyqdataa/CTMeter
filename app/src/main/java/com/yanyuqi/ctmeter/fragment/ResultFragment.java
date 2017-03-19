@@ -109,13 +109,13 @@ public class ResultFragment extends Fragment implements ChangeRightBtn {
         }
     }
 
-    //3333
+    //3333444
     private void initListener() {
         MainActivity activity = (MainActivity) getActivity();
         resultBtnAdapter = new ResultBtnAdapter(activity.getFragments(), this, resultData, data, getContext(), getFragmentManager());
         btnListView.setAdapter(resultBtnAdapter);
     }
-
+    //3333444
     private void initView(View view) {
         btnListView = (ListView) view.findViewById(R.id.btn_lv);
         textChangeOne = (TextView) view.findViewById(R.id.text_change_one);
