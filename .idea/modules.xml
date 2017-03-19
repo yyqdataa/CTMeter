@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CTMeter.iml" filepath="$PROJECT_DIR$/CTMeter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mypoidemo/mypoidemo.iml" filepath="$PROJECT_DIR$/mypoidemo/mypoidemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/verticaltablayout/verticaltablayout.iml" filepath="$PROJECT_DIR$/verticaltablayout/verticaltablayout.iml" />
     </modules>
   </component>
 </project>

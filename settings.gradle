@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':verticaltablayout', ':mypoidemo'
+//include  ':verticaltablayoutdemo', ':myscreenoriention', ':myworddemo', ':poitest', ':poishadow'

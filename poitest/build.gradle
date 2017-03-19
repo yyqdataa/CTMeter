@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "org.dstadler.poiandroidtest.poitest"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // For the purposes of the sample, allow testing of a proguarded release build
+            // using the debug key
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    lintOptions {
+        // There are restricted packages used in some of POI code, e.g. java.awt or javax.imageio
+        // I could not exclude these in the
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:support-v4:25.0.0'
+    compile files('../poishadow/build/libs/poishadow-all.jar')
+}
