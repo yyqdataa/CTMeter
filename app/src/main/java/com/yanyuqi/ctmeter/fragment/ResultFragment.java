@@ -96,6 +96,7 @@ public class ResultFragment extends Fragment implements ChangeRightBtn {
     }
 
     //初始化数据
+    //zailaiyici
     private void initData() {
         int pos;
         for (int i = 0; i < str.length; i++) {
