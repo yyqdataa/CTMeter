@@ -116,6 +116,8 @@ public class ResultFragment extends Fragment implements ChangeRightBtn {
         btnListView.setAdapter(resultBtnAdapter);
     }
     //3333444
+
+
     private void initView(View view) {
         btnListView = (ListView) view.findViewById(R.id.btn_lv);
         textChangeOne = (TextView) view.findViewById(R.id.text_change_one);
