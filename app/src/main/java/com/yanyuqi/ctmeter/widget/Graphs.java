@@ -203,8 +203,8 @@ public class Graphs extends View {
         drawCoorSystem(canvas);
         if (points != null && points.size() > 0) {
             connectPoints(canvas, points);
-            points.clear();
         }
+
         if (hasGDPoint) {
             drawGDInfo(canvas);
         }
@@ -239,7 +239,7 @@ public class Graphs extends View {
         paint.setColor(Color.parseColor("#000000"));
         canvas.drawText(gdStr, xTotalLength - w - dp2px(8), -h - dp2px(10), paint);
         canvas.drawText(gdStr2, xTotalLength - w - dp2px(8), -dp2px(10), paint);
-        hasGDPoint = false;
+//        hasGDPoint = false;
     }
 
     /**
@@ -328,10 +328,10 @@ public class Graphs extends View {
                 drawDashLine(canvas, 0, -i * dis, xTotalLength, -i * dis);
             } else {
                 canvas.drawLine(0, 0 - i * dis, -dp2px(5), 0 - i * dis, paint);
-                int f = (int) (i * singleValue);
-//                BigDecimal b   =   new   BigDecimal(f);
-//                float   f1   =   b.setScale(1,   BigDecimal.ROUND_HALF_UP).floatValue();
-                drawYKDValue(paint, f + "", canvas, -i * dis);
+                float f = i * singleValue;
+                BigDecimal b   =   new   BigDecimal(f);
+                float   f1   =   b.setScale(0,   BigDecimal.ROUND_HALF_UP).floatValue();
+                drawYKDValue(paint, (int)f1 + "", canvas, -i * dis);
             }
         }
     }

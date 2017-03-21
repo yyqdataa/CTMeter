@@ -103,7 +103,7 @@ public class DLHGQFragment extends Fragment {
                     checkBox1.setClickable(true);
                     checkBox2.setChecked(false);
                     checkBox3.setChecked(false);
-                    resultFragment.changeRightbtn(NO_BTN);
+                    resultFragment.changeRightBtn(NO_BTN);
                     currentBtnNum = NO_BTN;
                     updateView(3);
                     setClassView(2);
@@ -117,7 +117,7 @@ public class DLHGQFragment extends Fragment {
                     checkBox1.setClickable(false);
                     checkBox4.setClickable(true);
                     checkBox4.setChecked(false);
-                    resultFragment.changeRightbtn(NO_BTN);
+                    resultFragment.changeRightBtn(NO_BTN);
                     currentBtnNum = NO_BTN;
                     updateView(1);
                     setClassView(2);
@@ -132,12 +132,12 @@ public class DLHGQFragment extends Fragment {
                     checkBox1.setClickable(false);
                     checkBox4.setChecked(false);
                     checkBox4.setClickable(true);
-                    resultFragment.changeRightbtn(FOUR_BTN);
+                    resultFragment.changeRightBtn(FOUR_BTN);
                     currentBtnNum = FOUR_BTN;
                     updateView(2);
                     setClassView(currentJBNum);
                 } else {
-                    resultFragment.changeRightbtn(NO_BTN);
+                    resultFragment.changeRightBtn(NO_BTN);
                     currentBtnNum = NO_BTN;
                     updateView(1);
                     setClassView(2);
@@ -154,12 +154,12 @@ public class DLHGQFragment extends Fragment {
                     checkBox2.setClickable(false);
                     checkBox4.setChecked(false);
                     checkBox4.setClickable(true);
-                    resultFragment.changeRightbtn(SIX_BTN);
+                    resultFragment.changeRightBtn(SIX_BTN);
                     currentBtnNum = SIX_BTN;
                     setClassView(currentJBNum);
                 } else {
                     checkBox2.setClickable(true);
-                    resultFragment.changeRightbtn(FOUR_BTN);
+                    resultFragment.changeRightBtn(FOUR_BTN);
                     currentBtnNum = FOUR_BTN;
                 }
                 updateView(2);
@@ -173,10 +173,10 @@ public class DLHGQFragment extends Fragment {
                 int i = currentJBNum % 8;
                 jbButton.setText(JB_NAME[i]);
                 if (i==1||i==2){
-                    resultFragment.changeRightbtn(SIX_BTN);
+                    resultFragment.changeRightBtn(SIX_BTN);
                     currentBtnNum = SIX_BTN;
                 }else {
-                    resultFragment.changeRightbtn(FOUR_BTN);
+                    resultFragment.changeRightBtn(FOUR_BTN);
                     currentBtnNum = FOUR_BTN;
                 }
                 setClassView(i);

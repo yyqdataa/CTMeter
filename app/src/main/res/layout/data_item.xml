@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="30dp"
     android:orientation="horizontal">
 
     <View
         android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="#c1bfbf" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/text_one"
@@ -19,9 +18,8 @@
         android:textSize="12dp" />
 
     <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="#c1bfbf" />
+        android:layout_width="2dp"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/text_two"
@@ -33,9 +31,8 @@
         android:textSize="12dp" />
 
     <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="#c1bfbf" />
+        android:layout_width="2dp"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/text_three"
@@ -48,7 +45,6 @@
 
     <View
         android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="#c1bfbf" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

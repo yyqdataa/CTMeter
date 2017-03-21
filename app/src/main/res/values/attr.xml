@@ -7,4 +7,11 @@
         <attr name="yName" format="string"/>
         <attr name="xName" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="ScrollChangeIndicator">
+
+        <attr name="textLeft" format="string"/>
+        <attr name="textRight" format="string"/>
+
+    </declare-styleable>
 </resources>

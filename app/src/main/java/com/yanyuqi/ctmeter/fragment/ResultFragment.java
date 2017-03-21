@@ -146,7 +146,7 @@ public class ResultFragment extends Fragment implements ChangeRightBtn {
     }
 
     @Override
-    public void changeRightbtn(int testType) {
+    public void changeRightBtn(int testType) {
 
         switch (testType) {
             case 0:

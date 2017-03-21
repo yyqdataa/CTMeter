@@ -64,6 +64,7 @@ public class XWCBFragment extends Fragment {
         initListener();
         return view;
     }
+
     private void initListener() {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

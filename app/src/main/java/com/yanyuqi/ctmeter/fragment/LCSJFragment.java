@@ -37,7 +37,7 @@ public class LCSJFragment extends Fragment {
     private Button changeBtn;
     private static List fragments;
     private static ResultFragment resultFragment;
-    private  static List<LCQXBean> resultData;
+    private static List<LCQXBean> resultData;
     private LCSJAdapter lcsjAdapter;
 
     public LCSJFragment() {
@@ -52,7 +52,7 @@ public class LCSJFragment extends Fragment {
         fragment.setArguments(args);
         LCSJFragment.fragments = fragments;
         LCSJFragment.resultFragment = resultFragment;
-        LCSJFragment.resultData =resultData;
+        LCSJFragment.resultData = resultData;
         return fragment;
     }
 
@@ -63,13 +63,13 @@ public class LCSJFragment extends Fragment {
         initView(view);
         initListener();
         getFile();
-        return  view;
+        return view;
     }
 
     private void getFile() {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             File storageDirectory = Environment.getExternalStorageDirectory();
-            String path = storageDirectory.getAbsolutePath()+File.separator+"CTMeter"+File.separator+"CT.ctp";
+            String path = storageDirectory.getAbsolutePath() + File.separator + "CTMeter" + File.separator + "CT.ctp";
             File file = new File(path);
             ReadFile(file);
         }
@@ -80,10 +80,10 @@ public class LCSJFragment extends Fragment {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             String s = "";
             resultData.clear();
-            while ((s = reader.readLine())!=null){
+            while ((s = reader.readLine()) != null) {
                 creatBeanByString(s);
             }
-            lcsjAdapter = new LCSJAdapter(getContext(),resultData);
+            lcsjAdapter = new LCSJAdapter(getContext(), resultData);
             dataListView.setAdapter(lcsjAdapter);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -93,34 +93,34 @@ public class LCSJFragment extends Fragment {
     }
 
     private void creatBeanByString(String s) {
-        if (s==null||s.length()==0){
+        if (s == null || s.length() == 0) {
             return;
         }
-        Log.i("yyq",s);
-        try{
+        Log.i("yyq", s);
+        try {
             int pos = s.indexOf("_");
-            String e_no = s.substring(0,pos);
-            s= s.substring(pos+1);
+            String e_no = s.substring(0, pos);
+            s = s.substring(pos + 1);
             pos = s.indexOf("_");
-            float e_fi = Float.parseFloat(s.substring(0,pos));
-            s= s.substring(pos+1);
+            float e_fi = Float.parseFloat(s.substring(0, pos));
+            s = s.substring(pos + 1);
             pos = s.indexOf("_");
-            float e_fu = Float.parseFloat(s.substring(0,pos));
-            s= s.substring(pos+1);
+            float e_fu = Float.parseFloat(s.substring(0, pos));
+            s = s.substring(pos + 1);
             pos = s.indexOf("_");
-            float e_fA = Float.parseFloat(s.substring(0,pos));
-            s= s.substring(pos+1);
+            float e_fA = Float.parseFloat(s.substring(0, pos));
+            s = s.substring(pos + 1);
             pos = s.indexOf("_");
-            float e_fUc = Float.parseFloat(s.substring(0,pos));
-            s= s.substring(pos+1);
+            float e_fUc = Float.parseFloat(s.substring(0, pos));
+            s = s.substring(pos + 1);
             pos = s.indexOf("_");
-            float e_fIpe = Float.parseFloat(s.substring(0,pos));
-            s= s.substring(pos+1);
+            float e_fIpe = Float.parseFloat(s.substring(0, pos));
+            s = s.substring(pos + 1);
             pos = s.indexOf("_");
-            float e_fUKr = Float.parseFloat(s.substring(0,pos));
-            LCQXBean lcqxBean = new LCQXBean(e_no,e_fu,e_fi,e_fUc,e_fA,e_fIpe,e_fUKr);
+            float e_fUKr = Float.parseFloat(s.substring(0, pos));
+            LCQXBean lcqxBean = new LCQXBean(e_no, e_fu, e_fi, e_fUc, e_fA, e_fIpe, e_fUKr);
             resultData.add(lcqxBean);
-        }catch (Exception e){
+        } catch (Exception e) {
             return;
         }
 
@@ -137,20 +137,21 @@ public class LCSJFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String text = changeBtn.getText().toString();
-                if ("实测数据".equals(text)){
+                if ("实测数据".equals(text)) {
                     changeBtn.setText("取整数据");
                     typeText.setText("-励磁曲线实测数据");
-                }else  if ("取整数据".equals(text)){
+                } else if ("取整数据".equals(text)) {
                     changeBtn.setText("实测数据");
                     typeText.setText("-励磁曲线取整数据");
                 }
             }
         });
     }
+
     private void showResultFrag() {
         MainActivity activity = (MainActivity) getActivity();
-        fragments.set(1,resultFragment);
-        (activity.tabLayout.getTabFragmentManager()).setFragments(fragments,this.getClass().getName());
+        fragments.set(1, resultFragment);
+        (activity.tabLayout.getTabFragmentManager()).setFragments(fragments, this.getClass().getName());
     }
 
     private void initView(View view) {

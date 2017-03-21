@@ -44,23 +44,23 @@ public class BZCBAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
-        if (convertView==null){
-            convertView = inflater.inflate(R.layout.data_item2,parent,false);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.data_item2, parent, false);
             viewHolder = new ViewHolder(convertView);
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.textNo.setText(list.get(position).getE_No());
-        viewHolder.textOne.setText(list.get(position).getE_fu()+"");
-        viewHolder.textTwo.setText(list.get(position).getE_fi()+"");
-        viewHolder.textThree.setText(list.get(position).getE_fUc()+"");
-        viewHolder.textFour.setText(list.get(position).getE_fA()+"");
-        viewHolder.textFive.setText(list.get(position).getE_fIpe()+"");
+        viewHolder.textOne.setText(list.get(position).getE_fu() + "");
+        viewHolder.textTwo.setText(list.get(position).getE_fi() + "");
+        viewHolder.textThree.setText(list.get(position).getE_fUc() + "");
+        viewHolder.textFour.setText(list.get(position).getE_fA() + "");
+        viewHolder.textFive.setText(list.get(position).getE_fIpe() + "");
 
         return convertView;
     }
 
-    static class ViewHolder{
+    static class ViewHolder {
         TextView textNo;
         TextView textOne;
         TextView textTwo;
@@ -68,7 +68,7 @@ public class BZCBAdapter extends BaseAdapter {
         TextView textFour;
         TextView textFive;
 
-        public ViewHolder(View view){
+        public ViewHolder(View view) {
             textNo = (TextView) view.findViewById(R.id.tv_no);
             textOne = (TextView) view.findViewById(R.id.tv_one);
             textTwo = (TextView) view.findViewById(R.id.tv_two);

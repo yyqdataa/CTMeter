@@ -23,8 +23,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
+            android:layout_height="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,44 +32,41 @@
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#000000" />
+                android:layout_height="match_parent" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#93542a"
+                android:background="@drawable/tv_title_shape"
                 android:gravity="center"
                 android:text="序号"
                 android:textColor="#000000"
                 android:textSize="14dp" />
 
             <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#000000" />
+                android:layout_width="2dp"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#93542a"
+                android:background="@drawable/tv_title_shape"
                 android:gravity="center"
                 android:text="测试电压(V)"
                 android:textColor="#000000"
                 android:textSize="14dp" />
 
             <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#000000" />
+                android:layout_width="2dp"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#93542a"
+                android:background="@drawable/tv_title_shape"
                 android:gravity="center"
                 android:text="测试电流(A)"
                 android:textColor="#000000"
@@ -78,14 +74,12 @@
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#000000" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
+            android:layout_height="1dp" />
 
         <ListView
             android:id="@+id/data_lv"
@@ -100,19 +94,19 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_back"
+            android:id="@+id/btn_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="返回"
+            android:text="实测数据"
             android:textColor="#000000"
             android:textSize="14dp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_change"
+            android:id="@+id/btn_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="实测数据"
+            android:text="返回"
             android:textColor="#000000"
             android:textSize="14dp"
             android:textStyle="bold" />

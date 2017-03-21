@@ -82,7 +82,7 @@ public class DYHGQFragment extends Fragment {
                     checkBox2.setChecked(false);
                     checkBox1.setClickable(true);
                     checkBox3.setClickable(false);
-                    resultFragment.changeRightbtn(NO_BTN);
+                    resultFragment.changeRightBtn(NO_BTN);
                     currentBtnNum = NO_BTN;
                     updataView(3);
                 }
@@ -95,7 +95,7 @@ public class DYHGQFragment extends Fragment {
                     checkBox1.setClickable(false);
                     checkBox3.setClickable(true);
                     checkBox3.setChecked(false);
-                    resultFragment.changeRightbtn(NO_BTN);
+                    resultFragment.changeRightBtn(NO_BTN);
                     currentBtnNum = NO_BTN;
                     updataView(1);
                 }
@@ -109,7 +109,7 @@ public class DYHGQFragment extends Fragment {
                     checkBox1.setClickable(false);
                     checkBox3.setChecked(false);
                     checkBox3.setClickable(true);
-                    resultFragment.changeRightbtn(TWO_BTN);
+                    resultFragment.changeRightBtn(TWO_BTN);
                     currentBtnNum = TWO_BTN;
                     updataView(2);
                 } else {

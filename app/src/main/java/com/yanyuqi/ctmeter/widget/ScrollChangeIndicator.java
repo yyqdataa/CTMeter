@@ -1,6 +1,7 @@
 package com.yanyuqi.ctmeter.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +11,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.v4.view.ViewPager;
+
+import com.yanyuqi.ctmeter.R;
 
 /**
  * 自定义滑动切换指示器
@@ -43,8 +46,8 @@ public class ScrollChangeIndicator extends View implements ViewPager.OnPageChang
     private ViewPager.OnPageChangeListener onPageChangeListener;
     private float offset;
     private int alpha;
-    private String textLeft;
-    private String textRight;
+    private String textLeft = "";
+    private String textRight = "";
 
     public ScrollChangeIndicator(Context context) {
         this(context, null);
@@ -52,12 +55,16 @@ public class ScrollChangeIndicator extends View implements ViewPager.OnPageChang
 
     public ScrollChangeIndicator(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-        leftColorValue = Color.BLUE;
-        rightColorValue = Color.WHITE;
+
     }
 
     public ScrollChangeIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        leftColorValue = Color.BLUE;
+        rightColorValue = Color.WHITE;
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ScrollChangeIndicator);
+        textLeft = array.getString(R.styleable.ScrollChangeIndicator_textLeft);
+        textRight = array.getString(R.styleable.ScrollChangeIndicator_textRight);
     }
 
     public int getRightColorValue() {
