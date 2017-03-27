@@ -103,8 +103,14 @@ public class Graphs extends View {
     }
 
     public void setResultData(List resultData) {
-        this.resultData = resultData;
-        points = createPoints(resultData);
+        LCQXBean o = (LCQXBean) resultData.get(0);
+        if (o.getE_No().equals("拐点")) {
+            setGDPoint(o.getE_fi(),o.getE_fu());
+            this.resultData = resultData.subList(1, resultData.size());
+        }else {
+            this.resultData = resultData;
+        }
+        points = createPoints(this.resultData);
         invalidate();
     }
 
@@ -267,7 +273,7 @@ public class Graphs extends View {
      * @param x
      * @param y
      */
-    public void setGDPoint(float x, float y) {
+    private void setGDPoint(float x, float y) {
         hasGDPoint = true;
         gdPoint = new Point(x, y);
         invalidate();
@@ -329,9 +335,9 @@ public class Graphs extends View {
             } else {
                 canvas.drawLine(0, 0 - i * dis, -dp2px(5), 0 - i * dis, paint);
                 float f = i * singleValue;
-                BigDecimal b   =   new   BigDecimal(f);
-                float   f1   =   b.setScale(0,   BigDecimal.ROUND_HALF_UP).floatValue();
-                drawYKDValue(paint, (int)f1 + "", canvas, -i * dis);
+                BigDecimal b = new BigDecimal(f);
+                float f1 = b.setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                drawYKDValue(paint, (int) f1 + "", canvas, -i * dis);
             }
         }
     }

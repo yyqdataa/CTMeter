@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -125,7 +126,7 @@ public class ReferenceFragment extends Fragment implements ViewPager.OnPageChang
             @Override
             public void onClick(View v) {
                 //TODO 开始测试
-                Toast.makeText(getContext(),"尚未建立合法网络链接！！请检查！！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "尚未建立合法网络链接！！请检查！！", Toast.LENGTH_SHORT).show();
             }
         });
         btnReport.setOnClickListener(new View.OnClickListener() {
@@ -147,49 +148,36 @@ public class ReferenceFragment extends Fragment implements ViewPager.OnPageChang
             @Override
             public void onClick(View v) {
                 InputStream is = getContext().getClassLoader().getResourceAsStream("assets/Help.doc");
-                File file = new File("/mnt/sdcard/CTPMeter/Help.doc");
-                if (!(file.getParentFile()).exists()) {
-                    file.getParentFile().mkdirs();
-                }
-                if (!file.exists()) {
-                    try {
-                        file.createNewFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                try {
-                    OutputStream os = new FileOutputStream(file, false);
-                    byte[] b = new byte[1024];
-                    int len;
-                    while ((len = is.read(b)) != -1) {
-                        os.write(b, 0, len);
-                    }
-                    os.flush();
-                    os.close();
-                    is.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                openDoc(file);
+                File demoFile = writeFile(is, "/mnt/sdcard/CTPMeter/Help.doc");
+                openDoc(demoFile);
             }
         });
     }
 
+
+    /**
+     * 设置报告模板功能
+     */
     private void setReport() {
         File directory = Environment.getExternalStorageDirectory();
-        String str = directory.toString()+File.separator+"CTPMeter"+File.separator+DIR;
+        String str = directory.toString() + File.separator + "CTPMeter" + File.separator + DIR;
         reportPathTv.setText(str);
         List<File> sdFiles = StoregeDao.getSDFiles(DIR);
         for (int i = 0; i < 20; i++) {
-            File file = new File("CTP_Test"+i+".xls");
+            File file = new File("CTP_Test" + i + ".xls");
             sdFiles.add(file);
         }
-        ReportListAdapter adapter = new ReportListAdapter(getContext(), sdFiles);
+        final ReportListAdapter adapter = new ReportListAdapter(getContext(), sdFiles);
         reportListView.setAdapter(adapter);
+        reportListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                adapter.setCheckedItem(position);
+                InputStream is = getContext().getClassLoader().getResourceAsStream("assets/CTP.doc");
+                File file = writeFile(is, "/mnt/sdcard/CTPMeter/ReportXls/CTP.doc");
+                openDoc(file);
+            }
+        });
     }
 
     private void initReportView(View view) {
@@ -213,7 +201,7 @@ public class ReferenceFragment extends Fragment implements ViewPager.OnPageChang
         Display defaultDisplay = manager.getDefaultDisplay();
         WindowManager.LayoutParams attributes = dialog.getWindow().getAttributes();
         attributes.width = defaultDisplay.getWidth() / 8 * 7;
-        attributes.height = ChangePixel.dp2px(getContext(),270);
+        attributes.height = ChangePixel.dp2px(getContext(), 270);
         dialog.getWindow().setAttributes(attributes);
         dialog.show();
         return contentView;
@@ -304,6 +292,43 @@ public class ReferenceFragment extends Fragment implements ViewPager.OnPageChang
         dialog.getWindow().setAttributes(attributes);
         dialog.show();
         return contentView;
+    }
+
+    /**
+     * 刻录模板文件
+     *
+     * @param is
+     * @param s  模板路径
+     * @return
+     */
+    private File writeFile(InputStream is, String s) {
+        File file = new File(s);
+        if (!(file.getParentFile()).exists()) {
+            file.getParentFile().mkdirs();
+        }
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            OutputStream os = new FileOutputStream(file, false);
+            byte[] b = new byte[1024];
+            int len;
+            while ((len = is.read(b)) != -1) {
+                os.write(b, 0, len);
+            }
+            os.flush();
+            os.close();
+            is.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 
     /**

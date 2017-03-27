@@ -72,6 +72,13 @@ public class ReportListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void setCheckedItem(int pos){
+        for (int i = 0; i < checks.length; i++) {
+            checks[i] = false;
+        }
+        checks[pos] = true;
+        notifyDataSetChanged();
+    }
     static class ViewHolder{
         CheckBox checkBox;
         TextView title;
